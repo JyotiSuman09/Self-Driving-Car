@@ -23,4 +23,4 @@
 
 ## Demo
 
-![](https://github.com/JyotiSuman09/Self-Driving-Car/blob/main/demo.webm)
+![](/demo.webm)
