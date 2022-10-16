@@ -23,4 +23,4 @@
 
 ## Demo
 
-![](/demo.webm)
+<img src="./demo.gif">
