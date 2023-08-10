@@ -1,3 +1,5 @@
+import utils from "./utils.js";
+
 class Visualizer{
     static drawNetwork(ctx,network){
         const margin=50;
@@ -10,7 +12,7 @@ class Visualizer{
 
         for(let i=network.levels.length-1;i>=0;i--){
             const levelTop=top+
-                lerp(
+                utils.lerp(
                     height-levelHeight,
                     0,
                     network.levels.length==1
@@ -47,7 +49,7 @@ class Visualizer{
                     top
                 );
                 ctx.lineWidth=2;
-                ctx.strokeStyle=getRGBA(weights[i][j]);
+                ctx.strokeStyle=utils.getRGBA(weights[i][j]);
                 ctx.stroke();
             }
         }
@@ -61,7 +63,7 @@ class Visualizer{
             ctx.fill();
             ctx.beginPath();
             ctx.arc(x,bottom,nodeRadius*0.6,0,Math.PI*2);
-            ctx.fillStyle=getRGBA(inputs[i]);
+            ctx.fillStyle=utils.getRGBA(inputs[i]);
             ctx.fill();
         }
         
@@ -73,13 +75,13 @@ class Visualizer{
             ctx.fill();
             ctx.beginPath();
             ctx.arc(x,top,nodeRadius*0.6,0,Math.PI*2);
-            ctx.fillStyle=getRGBA(outputs[i]);
+            ctx.fillStyle=utils.getRGBA(outputs[i]);
             ctx.fill();
 
             ctx.beginPath();
             ctx.lineWidth=2;
             ctx.arc(x,top,nodeRadius*0.8,0,Math.PI*2);
-            ctx.strokeStyle=getRGBA(biases[i]);
+            ctx.strokeStyle=utils.getRGBA(biases[i]);
             ctx.setLineDash([3,3]);
             ctx.stroke();
             ctx.setLineDash([]);
@@ -100,7 +102,7 @@ class Visualizer{
     }
 
     static #getNodeX(nodes,index,left,right){
-        return lerp(
+        return utils.lerp(
             left,
             right,
             nodes.length==1
@@ -109,3 +111,5 @@ class Visualizer{
         );
     }
 }
+
+export default Visualizer;

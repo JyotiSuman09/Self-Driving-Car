@@ -1,3 +1,5 @@
+import utils from "./utils.js";
+
 class Sensor{
     constructor(car){
         this.car=car;
@@ -27,7 +29,7 @@ class Sensor{
         let touches=[];
 
         for(let i=0;i<roadBorders.length;i++){
-            const touch=getIntersection(
+            const touch=utils.getIntersection(
                 ray[0],
                 ray[1],
                 roadBorders[i][0],
@@ -41,7 +43,7 @@ class Sensor{
         for(let i=0;i<traffic.length;i++){
             const poly=traffic[i].polygon;
             for(let j=0;j<poly.length;j++){
-                const value=getIntersection(
+                const value=utils.getIntersection(
                     ray[0],
                     ray[1],
                     poly[j],
@@ -65,7 +67,7 @@ class Sensor{
     #castRays(){
         this.rays=[];
         for(let i=0;i<this.rayCount;i++){
-            const rayAngle=lerp(
+            const rayAngle=utils.lerp(
                 this.raySpread/2,
                 -this.raySpread/2,
                 this.rayCount==1?0.5:i/(this.rayCount-1)
@@ -117,3 +119,5 @@ class Sensor{
         }
     }        
 }
+
+export default Sensor;

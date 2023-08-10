@@ -1,3 +1,8 @@
+import Sensor from "./sensor.js";
+import Controls from "./controls.js";
+import NeuralNetwork from "./network.js";
+import utils from "./utils.js";
+
 class Car{
     constructor(x,y,width,height,controlType,maxSpeed=3,color="blue"){
         this.x=x;
@@ -23,7 +28,7 @@ class Car{
         this.controls=new Controls(controlType);
 
         this.img=new Image();
-        this.img.src="car.png"
+        this.img.src="/assets/car.png"
 
         this.mask=document.createElement("canvas");
         this.mask.width=width;
@@ -31,7 +36,7 @@ class Car{
 
         const maskCtx=this.mask.getContext("2d");
         this.img.onload=()=>{
-            maskCtx.fillStyle=color;
+            maskCtx.fillStyle=controlType == "KEYS"? "red": color;
             maskCtx.rect(0,0,this.width,this.height);
             maskCtx.fill();
 
@@ -64,12 +69,12 @@ class Car{
 
     #assessDamage(roadBorders,traffic){
         for(let i=0;i<roadBorders.length;i++){
-            if(polysIntersect(this.polygon,roadBorders[i])){
+            if(utils.polysIntersect(this.polygon,roadBorders[i])){
                 return true;
             }
         }
         for(let i=0;i<traffic.length;i++){
-            if(polysIntersect(this.polygon,traffic[i].polygon)){
+            if(utils.polysIntersect(this.polygon,traffic[i].polygon)){
                 return true;
             }
         }
@@ -163,3 +168,5 @@ class Car{
 
     }
 }
+
+export default Car;

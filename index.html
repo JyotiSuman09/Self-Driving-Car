@@ -6,17 +6,22 @@
 <body>
     <canvas id="carCanvas"></canvas>
     <div id="verticalButtons">
-        <button onclick="save()">💾</button>
-        <button onclick="discard()">🗑️</button>
+        <button id="save" >💾</button>
+        <button id="discard">🗑️</button>
+        <button id="download">⬇️</button>
     </div>
     <canvas id="networkCanvas"></canvas>
-    <script src="visualizer.js"></script>
-    <script src="network.js"></script>
-    <script src="sensor.js"></script>
-    <script src="utils.js"></script>
-    <script src="road.js"></script>
-    <script src="controls.js"></script>
-    <script src="car.js"></script>
-    <script src="main.js"></script>
+    <script src="index.js" type="module"></script>
+    <script type="module">
+        import { save, discard, downloadModel } from '/index.js';
+
+        const btnSave = document.getElementById("save")
+        const btnReset = document.getElementById("discard")
+        const btnDownload = document.getElementById("download")
+
+        btnSave.addEventListener("click", save)
+        btnReset.addEventListener("click", discard)
+        btnDownload.addEventListener("click", downloadModel)
+    </script> 
 </body>
 </html>

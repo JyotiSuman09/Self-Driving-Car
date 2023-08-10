@@ -1,3 +1,5 @@
+import utils from "./utils.js";
+
 class Road{
     constructor(x,width,laneCount=3){
         this.x=x;
@@ -32,7 +34,7 @@ class Road{
         ctx.strokeStyle="white";
 
         for(let i=1;i<=this.laneCount-1;i++){
-            const x=lerp(
+            const x=utils.lerp(
                 this.left,
                 this.right,
                 i/this.laneCount
@@ -54,3 +56,5 @@ class Road{
         });
     }
 }
+
+export default Road;
